@@ -14,10 +14,10 @@ import { LoaderState } from '../../models/loader-state';
 
 @Component({
   selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  templateUrl: './login.page.html',
+  styleUrls: ['./login.page.scss']
 })
-export class LoginComponent implements OnInit, OnDestroy {
+export class LoginPage implements OnInit, OnDestroy {
   /**
    * Components OnDestroy notification
    */
@@ -39,7 +39,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   form: FormGroup = this.formBuilder.group({ token: '' });
 
   /**
-   * Error messages for failed responses.
+   * Error messages for failed login attempts.
    */
   errorMessages: { [id: number]: string } = {
     [400]: 'Der Server hat ungültige Daten erhalten.',
@@ -96,9 +96,6 @@ export class LoginComponent implements OnInit, OnDestroy {
     return EMPTY;
   }
 
-  /**
-   * Resets the loader state and the error message.
-   */
   private resetLoaderState(): void {
     this.message = null;
     this.loadingState = LoaderState.None;
