@@ -4,11 +4,11 @@ export class AuthService {
   fakeAuth(token: string): Observable<string> {
     return new Observable((observer: Observer<string>) => {
       setTimeout(() => {
-        const lowerToken = token.toLowerCase();
+        const normalizedToken = token.toLowerCase();
 
-        if (lowerToken === 'foobar') {
+        if (normalizedToken === 'foobar') {
           observer.next('take-your-fake-jwt');
-        } else if (lowerToken === 'server') {
+        } else if (normalizedToken === 'server') {
           observer.error({ status: 500 });
         } else {
           observer.error({ status: 401 });

@@ -19,6 +19,11 @@ import { LoaderState } from '../../models/loader-state';
 })
 export class LoginPage implements OnInit, OnDestroy {
   /**
+   * Enumeration of `LoaderState`s.
+   */
+  LoaderState = LoaderState;
+
+  /**
    * Components OnDestroy notification
    */
   private componentDestruction$ = new Subject();
@@ -57,7 +62,7 @@ export class LoginPage implements OnInit, OnDestroy {
     this.form
       .get('token')
       ?.valueChanges.pipe(
-        tap(this.resetLoaderState),
+        tap(() => this.resetLoaderState()),
         debounceTime(250),
         filter((token: string) => token.length === 6),
         tap(() => (this.loadingState = LoaderState.Loading)),
@@ -97,7 +102,7 @@ export class LoginPage implements OnInit, OnDestroy {
   }
 
   private resetLoaderState(): void {
-    this.message = null;
     this.loadingState = LoaderState.None;
+    this.message = null;
   }
 }
