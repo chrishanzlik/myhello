@@ -5,7 +5,7 @@ export enum LoaderState {
   /**
    * The loader is inactive.
    */
-  None = 'None',
+  Idle = 'Idle',
   /**
    * The loader is loading.
    */

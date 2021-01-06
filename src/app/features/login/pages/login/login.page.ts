@@ -31,7 +31,7 @@ export class LoginPage implements OnInit, OnDestroy {
   /**
    * Actual loader state. See `LoaderState` enum for more information.
    */
-  loadingState = LoaderState.None;
+  loadingState = LoaderState.Idle;
 
   /**
    * Error message, if present.
@@ -68,7 +68,7 @@ export class LoginPage implements OnInit, OnDestroy {
         tap(() => (this.loadingState = LoaderState.Loading)),
         switchMap((token: string) =>
           of(token).pipe(
-            switchMap(() => this.authService.fakeAuth(token)),
+            switchMap(() => this.authService.authenticate(token)),
             catchError((error) => this.handleErrorStatusCode(error))
           )
         ),
@@ -102,7 +102,7 @@ export class LoginPage implements OnInit, OnDestroy {
   }
 
   private resetLoaderState(): void {
-    this.loadingState = LoaderState.None;
+    this.loadingState = LoaderState.Idle;
     this.message = null;
   }
 }

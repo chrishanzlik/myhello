@@ -1,7 +1,7 @@
 import { Observable, Observer } from 'rxjs';
 
 export class AuthService {
-  fakeAuth(token: string): Observable<string> {
+  authenticate(token: string): Observable<string> {
     return new Observable((observer: Observer<string>) => {
       setTimeout(() => {
         const normalizedToken = token.toLowerCase();
